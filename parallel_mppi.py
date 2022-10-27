@@ -21,7 +21,7 @@ class MPPI():
         self.dim_u = 1 # U is theta
 
         # action init
-        self.U_reset()
+        self.U = np.zeros([self.T, self.dim_u])
         self.u_init = np.array([0.0])
         self.cost = np.zeros([self.K])
         self.noise = np.zeros([self.K, self.T, self.dim_u])
@@ -39,7 +39,9 @@ class MPPI():
             self.noise[:, t] = copy.copy(eps[:, t])
             theta = self.U[t] + eps[:, t] #(K, 1)
             assert theta.shape == (self.K, 1)
-            action = copy.copy(self.A * np.concatenate([np.cos(theta), np.sin(theta)]， axis = 1)) # (K, 2)
+
+            action = copy.copy(np.multiply(self.A, np.concatenate([np.cos(theta), np.sin(theta)], axis=1))) # (K, 2)
+
             assert action.shape == (self.K, 2)
             cost = self.predictor.predict(action, step)
             assert cost.shape == (self.K,)
@@ -80,7 +82,8 @@ class MPPI():
 
         return action_list, action
 
-
+    
+    # I think this method can be deleted
     def U_reset(self):
         self.U = np.zeros([self.T, self.dim_u])
 

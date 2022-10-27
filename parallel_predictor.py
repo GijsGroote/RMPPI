@@ -6,14 +6,14 @@ import os
 import sys
 import copy
 
-import rospy
-
 
 BASE_DIR=(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(BASE_DIR)
 
 from parallel_model import Model
-WEIGHTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'weights/60_steps')
+# WEIGHTS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'weights/60_steps')
+WEIGHTS_PATH = './weigths_path/60_steps'
+
 class Predictor():
     def __init__(self, sample_nums, time_steps):
         self.K = sample_nums # num of sample trajectories
