@@ -7,8 +7,8 @@ from sklearn.model_selection import train_test_split
 import time
 
 
-DATA_PATH = '/home/lyn/policies/randomized_push_data/chosen_data'
-SAVE_PATH = '/home/lyn/HitLyn/Push/saved_model_randomized'
+DATA_PATH = './data_path'
+SAVE_PATH = './save_path'
 
 def input_from_world_to_object(state):
     """turn a vector which is relative to world coordinate to object coordinate, change the input of the network!!!!
